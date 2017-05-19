@@ -1,1 +1,4 @@
-
+<% @ideas.each do |idea| %>
+    <h3><%= idea.description %></h3>
+    <h4><%= idea.author %></h4>
+<% end %>
