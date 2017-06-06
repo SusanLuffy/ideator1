@@ -1,17 +1,20 @@
 class IdeasController < ApplicationController
+#def index
+ #   @idea = Idea.new
+#@ideas = Idea.all
+#end
 def index
-    @idea = Idea.new
-@ideas = Idea.all
+  @ideas = Idea.order("created_at DESC").paginate(:page => params[:page], :per_page =>4 )
 end
 def create
 @idea = Idea.create(idea_params)
 if @idea.valid?
-    
-else
-    
-end
-redirect_to root_path
-end
+  flash[:success] = "Your idea has been posted!"
+    else
+      flash[:alert] = "Woops! Looks like there has been an error!"
+    end
+    redirect_to root_path
+  end
 def edit
 end
 private
@@ -25,13 +28,16 @@ end
 def update
    @idea = Idea.find(params[:id])
    if @idea.update(ideas_params)
-       redirect_to root_path
+      flash[:success] = "The idea has been updated!"
+      redirect_to root_path
    else
-       redirect_to edit_idea_path(params[:id])
+      flash[:alert] = "Woops! Looks like there has been an error!"
+      redirect_to edit_idea_path(params[:id])
    end
 end
 def destroy
    @idea = Idea.find(params[:id]) 
     @idea.destroy
+    flash[:success] = "The idea was successfully deleted!"
     redirect_to root_path
 end
