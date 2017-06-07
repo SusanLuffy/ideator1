@@ -4,17 +4,17 @@ class IdeasController < ApplicationController
 #@ideas = Idea.all
 #end
 def index
-  @ideas = Idea.order("created_at DESC").paginate(:page => params[:page], :per_page =>4 )
+  @ideas = Idea.order("created_at DESC").paginate(:page => params[:page], :per_page =>2 )
 end
 def create
 @idea = Idea.create(idea_params)
 if @idea.valid?
   flash[:success] = "Your idea has been posted!"
-    else
-      flash[:alert] = "Woops! Looks like there has been an error!"
-    end
+else
+  flash[:alert] = "Woops! Looks like there has been an error!"
+end
     redirect_to root_path
-  end
+end
 def edit
 end
 private
