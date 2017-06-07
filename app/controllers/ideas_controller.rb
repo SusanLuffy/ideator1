@@ -15,13 +15,6 @@ else
 end
     redirect_to root_path
 end
-def edit
-end
-private
-def idea_params
-params.require(:idea).permit(:description, :author)
-end
-end
 def edit 
     @idea = Idea.find(params[:id])
 end
@@ -40,4 +33,9 @@ def destroy
     @idea.destroy
     flash[:success] = "The idea was successfully deleted!"
     redirect_to root_path
+end
+private
+def idea_params
+params.require(:idea).permit(:description, :author)
+end
 end
