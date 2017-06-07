@@ -4,7 +4,7 @@ class IdeasController < ApplicationController
 #@ideas = Idea.all
 #end
 def index
-  @ideas = Idea.order("created_at DESC").paginate(:page => params[:page], :per_page =>2 )
+  @ideas = Idea.order("created_at DESC").paginate(:page => params[:page], :per_page =>2  )
 end
 def create
 @idea = Idea.create(idea_params)
